@@ -16,7 +16,7 @@
   "author": "Lord Voltage",
   "license": "MIT",
   "dependencies": {
-    "@joanimi/baileys": "^6.5.0",
+    "@joanimi/baileys": "^3.0.5",
     "express": "^4.19.2",
     "socket.io": "^4.7.5",
     "pino": "^9.0.0",
