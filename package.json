@@ -1,0 +1,31 @@
+{
+  "name": "whatsapp-session-generator",
+  "version": "1.0.0",
+  "description": "A web interface to generate WhatsApp session IDs for Baileys bots.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "whatsapp",
+    "baileys",
+    "session-id",
+    "generator",
+    "vercel"
+  ],
+  "author": "Lord Voltage",
+  "license": "MIT",
+  "dependencies": {
+    "@joanimi/baileys": "^6.5.0",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "pino": "^9.0.0",
+    "node-cache": "^5.1.2",
+    "@hapi/boom": "^10.0.1",
+    "libphonenumber-js": "^1.11.3",
+    "chalk": "^5.3.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

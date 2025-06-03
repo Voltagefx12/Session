@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark MD Session ID Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #007bff; }
+        p { text-align: center; color: #555; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        #status { margin-top: 20px; padding: 10px; border-radius: 4px; background-color: #e9ecef; border: 1px solid #ced4da; text-align: center;}
+        #qrCode { margin-top: 20px; text-align: center; }
+        #qrCode img { max-width: 250px; height: auto; border: 1px solid #ddd; }
+        #pairingCode { margin-top: 15px; font-size: 1.2em; font-weight: bold; color: #dc3545; text-align: center; word-break: break-all;}
+        #sessionIdOutput { margin-top: 20px; background-color: #f8f9fa; padding: 15px; border-radius: 4px; border: 1px solid #e2e6ea; }
+        #sessionIdOutput h3 { color: #28a745; margin-top: 0; text-align: center;}
+        #sessionIdJson { white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background-color: #e2e6ea; padding: 10px; border-radius: 4px; max-height: 300px; overflow-y: auto; }
+        .error { color: red; font-weight: bold; }
+        .success { color: green; font-weight: bold; }
+        .info { color: blue; }
+        textarea { width: calc(100% - 22px); height: 150px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; font-family: monospace; }
+        .copy-button { background-color: #6c757d; margin-top: 10px; }
+        .copy-button:hover { background-color: #5a6268; }
+        #clearButton { background-color: #ffc107; color: #333; margin-top: 10px;}
+        #clearButton:hover { background-color: #e0a800; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spark MD Session ID Generator</h1>
+
+        <p>Enter your WhatsApp number (with country code, e.g., 2348012345678) to generate a session ID.</p>
+
+        <div>
+            <label for="phoneNumber">WhatsApp Number:</label>
+            <input type="text" id="phoneNumber" placeholder="e.g., 2348012345678" required>
+            <button id="generateButton">Generate Session ID</button>
+            <button id="clearButton" style="display:none;">Clear Session Data</button>
+        </div>
+
+        <div id="status">
+            <span class="info">Status: Ready.</span>
+        </div>
+
+        <div id="qrCode" style="display: none;">
+            <h2>Scan this QR Code:</h2>
+            <img id="qrImage" src="" alt="QR Code">
+        </div>
+
+        <div id="pairingCode" style="display: none;">
+            <h2>Or Use this Pairing Code:</h2>
+            <span id="codeText"></span>
+        </div>
+
+        <div id="sessionIdOutput" style="display: none;">
+            <h3>Your Session ID (creds.json content):</h3>
+            <textarea id="sessionIdJson" readonly></textarea>
+            <button class="copy-button" onclick="copySessionId()">Copy to Clipboard</button>
+            <p>Paste this JSON content into your `creds.json` file for deployment of your bot.</p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
