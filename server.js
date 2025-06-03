@@ -1,11 +1,13 @@
 // ./server.js
 const express = require('express');
-const http = require = require('http');
+const http = require('http'); // Typo here, should be `http = require('http');`
 const { Server } = require('socket.io');
 const path = require('path');
 const { startWhatsAppSession } = require('./session_generator');
 const { PhoneNumber } = require('libphonenumber-js');
 const chalk = require('chalk');
+
+console.log('Server.js: Starting script execution.'); // ADD THIS LINE
 
 const app = express();
 const server = http.createServer(app);
@@ -18,8 +20,10 @@ app.use(express.json());
 
 io.on('connection', (socket) => {
     console.log(chalk.green(`Client connected: ${socket.id}`));
+    console.log('Server.js: Socket.IO client connected.'); // ADD THIS LINE
 
     socket.on('start-session', async (data) => {
+        console.log('Server.js: Received start-session event.'); // ADD THIS LINE
         const { phoneNumber: rawPhoneNumber } = data;
         let formattedNumber = rawPhoneNumber.replace(/[^0-9]/g, '');
 
@@ -53,6 +57,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log(chalk.red(`Client disconnected: ${socket.id}`));
+        console.log('Server.js: Socket.IO client disconnected.'); // ADD THIS LINE
     });
 });
 
@@ -62,21 +67,8 @@ app.get('/', (req, res) => {
 
 server.listen(PORT, () => {
     console.log(chalk.cyan(`Server running on http://localhost:${PORT}`));
+    console.log('Server.js: HTTP server is listening.'); // ADD THIS LINE
     console.log(chalk.green('Go to your browser and open the link above to generate session ID.'));
 });
 
-process.on('SIGINT', () => {
-    console.log(chalk.yellow('SIGINT received. Shutting down server...'));
-    server.close(() => {
-        console.log(chalk.green('Server gracefully shut down.'));
-        process.exit(0);
-    });
-});
-
-process.on('SIGTERM', () => {
-    console.log(chalk.yellow('SIGTERM received. Shutting down server...'));
-    server.close(() => {
-        console.log(chalk.green('Server gracefully shut down.'));
-        process.exit(0);
-    });
-});
+// ... (rest of your server.js code)
