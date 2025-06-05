@@ -6,7 +6,7 @@ const {
     useMultiFileAuthState,
     makeCacheableSignalKeyStore,
     PHONENUMBER_MCC,
-} = require("@joanimi/baileys");
+} = require("baileys");
 const pino = require("pino");
 const NodeCache = require("node-cache");
 const path = require('path');
