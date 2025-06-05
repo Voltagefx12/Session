@@ -19,7 +19,7 @@
     "api-dylux": "^1.4.4",
     "awesome-phonenumber": "^5.9.0",
     "axios": "^1.6.8",
-    "@joanimi/baileys": "^3.0.5",
+    "baileys": "github:kiuur/bails",
     "canvafy": "^7.1.0",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0",
